@@ -18,62 +18,46 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
     //Get request for notes.html
  app.get("/notes", (req, res) => {
         res.sendFile(path.join(__dirname, "./public/notes.html"));
 
-        //Get request if no matching route to go to homepage
- app.get('*', (req, res) => {
-            res.sendFile(path.join(__dirname, './public/index.html'));
-        });
     });
 
-});
+        //Get request if no matching route to go to homepage
+ 
 
 //API get request
 app.get('/api/notes', (req, res) => {
     fs.readFile(path.join(__dirname, './db/db.json'), 'utf8', (err, data) => {
         if (err) throw err;
         res.join(JSON.parse(data));
-    })
-   
-
+    });
 });
 
 //API post request
 app.post("/api/notes", (req, res) => {
-    fs.readFile(path.join(__dirname, './db/db.json'), 'utf8', (err, data) => {
-        if (err) throw err;
-        const content = JSON.parse(data);
-        const newContent = [];
+    let newNote = req.body;
+    let noteData = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+    let noteId = (noteList.length).toString();
 
-        content.push(req.body);
-
-        for (let i =0; i < content.length; i++) {
-            const newNote = {
-                id: i,
-                title: content[i].title,
-                text: content[i].text,
-            };
-            newContent.push(newNote);
-
-        }
-
-        fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(newContent), (err) => {
-            if(err) throw err;
-            res.json(req.body);
-        });
-    });
-
+    newNote.id = noteId;
+//Push new note to the data containing the other notes
+    noteData.push(newNote);
+//Write new data to db.json
+    fs.writeFileSync('./db/db.json', JSON.stringify(noteData));
+    res.json(noteData);
 
 });
 
 
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
 
-
-
+});
 
 
 
