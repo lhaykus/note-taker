@@ -20,6 +20,8 @@ https://fierce-falls-47255.herokuapp.com/
 To start install required packages in your terminal
 
 ``` 
+npm init -y 
+
 npm i express
 ``` 
 To give each note a unique id install uniqid
