@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 //Set up express app to grab data
 app.use(express.urlencoded({ extended: true }));
-//Creating route for every static file in public folder
+//Creating route for every file in public folder
 app.use(express.static('public'));
 
 

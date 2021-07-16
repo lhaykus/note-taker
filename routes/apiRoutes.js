@@ -8,21 +8,22 @@ const uniqid = require('uniqid');
 
 module.exports = (app) => {
 
-//GET route
-//Displays the data in the db.json
+//GET request
+
     app.get("/api/notes", (req, res) => {
-        //Reads db/db.json file and parses the object into string to read
+        //let db = Read data from db.json and parse into json format to read
         let db = JSON.parse(fs.readFileSync('./db/db.json'));
-        //responds with db parsed as a string
+        //responds in json for all db
         res.json(db);
     });
 
 
-//POST route for api
+//POST request
+
     app.post("/api/notes", (req, res) => {
-        //create notes to read the .db.json file and parses the object into strings
+        //let notes = Read data from db.json and parse into json format to read
         let notes = JSON.parse(fs.readFileSync('db/db.json'));
-        //responds with notes pasrsed as a string
+        //responds in json for all notes
         res.json(notes);
 
         //Creating new notes title, text, and id
@@ -32,11 +33,11 @@ module.exports = (app) => {
             id: uniqid(),
         };
 
-        //Pushing the newNotes into the notes objects
+        //Pushing the newNotes into the notes array
         notes.push(newNotes);
-        //Writing the db.json file from objects into strings 
+        //Writing the db.json file and stringify the data to store as a string
         fs.writeFileSync('./db/db.json', JSON.stringify(notes));
-        //Responsing with the notes converted to json strings
+        //respond back with all notes from database
         res.json(notes);
     });
 
