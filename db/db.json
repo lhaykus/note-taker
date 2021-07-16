@@ -1,6 +1,20 @@
 [
     {
-        "title":"Test Title",
-        "text":"Test text"
+        "title":"Note 1",
+        "text":"One does not simply walk into Mordor",
+        "id": "0"
+    },
+    {
+        "title":"Note 2",
+        "text":"Random stuff",
+        "id": "1"
+
+    }, 
+    {
+        "title":"Note 3",
+        "text":"More random stuff",
+        "id": "2"
+
     }
 ]
+ 
