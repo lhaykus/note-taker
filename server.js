@@ -17,7 +17,7 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
+    res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
     //Get request for notes.html
@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 
     });
 
-        //Get request if no matching route to go to homepage
+       
  
 
 //API get request
@@ -53,9 +53,9 @@ app.post("/api/notes", (req, res) => {
 });
 
 
-
+ //Get request if no matching route to go to homepage
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
+    res.sendFile(path.join(__dirname, '/public/index.html'));
 
 });
 
